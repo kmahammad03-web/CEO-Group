@@ -319,6 +319,67 @@ html[dir="rtl"] .submit:hover .arrow{transform:scaleX(-1) translateX(4px)}
 
 #confetti{position:fixed;inset:0;z-index:50;pointer-events:none}
 
+/* ---------- Tabs (attendance / my lecture) ---------- */
+.tabs{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:15px;background:#edf2f5;margin:-4px 0 22px}
+.tab{position:relative;z-index:1;height:44px;border:0;border-radius:12px;background:transparent;cursor:pointer;
+  font:600 14.5px var(--font-display);color:var(--ink-soft);display:flex;align-items:center;justify-content:center;gap:8px;transition:color .3s}
+.tab svg{opacity:.7;transition:opacity .3s}
+.tab[aria-selected="true"]{color:var(--navy-900)}
+.tab[aria-selected="true"] svg{opacity:1;color:var(--gold-600)}
+.tab:focus-visible{outline:2px solid var(--gold-500);outline-offset:2px}
+.tab-pill{position:absolute;top:4px;bottom:4px;width:calc(50% - 6px);inset-inline-start:4px;border-radius:12px;background:#fff;
+  box-shadow:0 6px 16px -6px rgba(12,37,54,.3);transition:inset-inline-start .5s var(--ease-spring)}
+.card[data-tab="lecture"] .tab-pill{inset-inline-start:calc(50% + 2px)}
+.pane{position:relative}
+.pane[hidden]{display:none}
+.pane.enter{animation:fadeUp .45s var(--ease-out)}
+
+/* ---------- My lecture ---------- */
+.lec-out{margin-top:18px}
+.lec-out:empty{display:none}
+.lec-state{animation:fadeUp .45s var(--ease-out)}
+.lec-card{border:1.5px solid var(--line);border-radius:18px;padding:16px;background:var(--field);margin-bottom:12px}
+.lec-card.today{border-color:var(--gold-500);background:#fffaf0;box-shadow:0 0 0 4px rgba(249,192,60,.14)}
+.lec-top{display:flex;align-items:center;flex-wrap:wrap;gap:6px 8px;margin-bottom:12px}
+.lec-top .acc{font-size:12px;font-weight:700;color:var(--navy-700);background:#e6eef4;border-radius:8px;padding:3px 8px;direction:ltr}
+.lec-top .grp{font-size:12.5px;color:var(--ink-soft)}
+.badge-today{margin-inline-start:auto;font-size:12px;font-weight:700;color:var(--navy-900);background:linear-gradient(135deg,var(--gold-300),var(--gold-500));padding:4px 10px;border-radius:99px;animation:pop .5s var(--ease-spring) both}
+.badge-moved{margin-inline-start:auto;font-size:12px;font-weight:700;color:#8a5a00;background:#fff1c9;padding:4px 10px;border-radius:99px}
+.lec-when{display:flex;gap:14px;align-items:center;margin-bottom:12px}
+.cal{flex:none;width:58px;border-radius:14px;overflow:hidden;text-align:center;background:#fff;box-shadow:0 6px 14px -8px rgba(12,37,54,.4)}
+.cal b{display:block;background:var(--navy-900);color:var(--gold-300);font-size:11px;font-weight:700;padding:4px 0;letter-spacing:.04em}
+.cal span{display:block;font-family:var(--font-display);font-weight:700;font-size:24px;color:var(--navy-900);padding:4px 0 6px}
+.lec-day{font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--navy-900)}
+.lec-time{font-size:14px;color:var(--ink-soft);margin-top:3px;direction:ltr;unicode-bidi:isolate;display:inline-block}
+.lec-rows{display:grid;gap:6px;font-size:14px;margin-bottom:14px}
+.lec-rows div{display:flex;gap:10px}
+.lec-rows span{flex:none;width:62px;color:var(--ink-soft);font-size:12.5px;padding-top:1px}
+.lec-rows b{font-weight:600;color:var(--navy-900);direction:ltr;unicode-bidi:isolate;overflow-wrap:anywhere}
+.join{display:flex;align-items:center;justify-content:center;gap:10px;height:50px;border-radius:14px;text-decoration:none;
+  font-family:var(--font-display);font-weight:600;font-size:15.5px;color:#fff;background:linear-gradient(135deg,#2d8cff,#1268d6);
+  box-shadow:0 12px 24px -12px rgba(18,104,214,.8);transition:transform .25s var(--ease-out)}
+.join:hover{transform:translateY(-2px)}
+.no-link{font-size:13px;color:#7a5408;background:#fff6e2;border-radius:12px;padding:10px 12px;line-height:1.6}
+.next-list{margin-top:12px;border-top:1px dashed #cbd6df;padding-top:10px;font-size:13.5px;color:var(--ink-soft)}
+.next-list div{display:flex;justify-content:space-between;gap:10px;padding:4px 0}
+.next-list b{color:var(--navy-900);font-weight:600}
+.next-list .ltr{direction:ltr;unicode-bidi:isolate}
+.wa{display:flex;align-items:center;justify-content:center;gap:10px;height:54px;border-radius:16px;text-decoration:none;margin-top:12px;
+  font-family:var(--font-display);font-weight:600;font-size:16px;color:#fff;background:linear-gradient(135deg,#2bd46b,#1ea952);
+  box-shadow:0 14px 28px -12px rgba(30,169,82,.75);transition:transform .25s var(--ease-out)}
+.wa:hover{transform:translateY(-2px)}
+.wa svg{flex:none}
+.wa.small{height:44px;font-size:14px;margin-top:12px}
+.wa[aria-disabled="true"]{opacity:.45;pointer-events:none;box-shadow:none}
+.pick-label{font-weight:600;font-size:14.5px;color:var(--navy-900);margin:4px 0 10px}
+.picks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pick{min-height:46px;padding:8px 10px;border-radius:13px;border:1.5px solid var(--line);background:var(--field);cursor:pointer;
+  font:600 13.5px var(--font-body);color:var(--navy-900);direction:ltr;transition:all .2s var(--ease-out)}
+.pick:hover{border-color:#c9d5df}
+.pick[aria-checked="true"]{border-color:#1ea952;background:#effbf3;box-shadow:0 0 0 4px rgba(30,169,82,.15)}
+@media (max-width:360px){.picks{grid-template-columns:1fr}}
+
+
 footer{position:relative;z-index:1;text-align:center;padding:18px 16px 26px;color:rgba(255,255,255,.45);font-size:13px}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -429,7 +490,17 @@ footer{position:relative;z-index:1;text-align:center;padding:18px 16px 26px;colo
 
     <!-- Form card -->
     <section class="card-wrap">
-      <div class="card" id="card">
+      <div class="card" id="card" data-tab="attend">
+        <div class="tabs" role="tablist">
+          <i class="tab-pill" aria-hidden="true"></i>
+          <button class="tab" type="button" role="tab" id="tabAttend" aria-selected="true" aria-controls="paneAttend">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+            <span data-i18n="tabAttend"></span></button>
+          <button class="tab" type="button" role="tab" id="tabLecture" aria-selected="false" aria-controls="paneLecture">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="3"/><path d="M16 10.5l5-3v9l-5-3"/></svg>
+            <span data-i18n="tabLecture"></span></button>
+        </div>
+        <div class="pane" id="paneAttend" role="tabpanel" aria-labelledby="tabAttend">
         <!-- Form view -->
         <div class="view" id="formView">
           <div class="card-head">
@@ -531,11 +602,42 @@ footer{position:relative;z-index:1;text-align:center;padding:18px 16px 26px;colo
             <button class="again" type="button" id="againBtn" data-i18n="again"></button>
           </div>
         </div>
+        </div>
+
+        <!-- My lecture -->
+        <div class="pane" id="paneLecture" role="tabpanel" aria-labelledby="tabLecture" hidden>
+          <div class="card-head">
+            <div>
+              <h2 data-i18n="lecTitle"></h2>
+              <p class="sub" data-i18n="lecSub"></p>
+            </div>
+            <div class="card-badge" aria-hidden="true">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+            </div>
+          </div>
+          <form id="lecForm" novalidate autocomplete="on" style="margin-top:20px">
+            <div class="field" id="fLPhone">
+              <label for="lphone"><span><span data-i18n="phoneLabel"></span> <span class="req">*</span></span></label>
+              <div class="control">
+                <svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>
+                <input id="lphone" name="lphone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" required>
+                <svg class="ok" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+              </div>
+              <div class="hint" data-i18n="phoneHint"></div>
+            </div>
+            <button class="submit" type="submit" id="lecBtn">
+              <span class="label" data-i18n="lecBtn"></span>
+              <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <span class="spinner"></span>
+            </button>
+          </form>
+          <div class="lec-out" id="lecOut" aria-live="polite"></div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer><span data-i18n="footer"></span> · © <span id="year"></span> CEO Group <span style="opacity:.5">· v2.0</span></footer>
+  <footer><span data-i18n="footer"></span> · © <span id="year"></span> CEO Group <span style="opacity:.5">· v2.2</span></footer>
 </div>
 
 <script>
@@ -602,7 +704,27 @@ const T = {
     again:"تسجيل حضور آخر",
     netErr:"حصلت مشكلة في الاتصال، حاول مرة أخرى بعد لحظات.",
     srvErr:"تعذّر حفظ الحضور: ",
-    footer:"منصة تسجيل الحضور"
+    footer:"منصة تسجيل الحضور",
+    tabAttend:"تسجيل الحضور", tabLecture:"محاضرتي القادمة",
+    h1aL:"اعرف ميعاد", h1bL:"محاضرتك القادمة",
+    leadL:"اكتب رقم تليفونك المسجّل — هنعرض لك ميعاد محاضرتك الجاية والدكتور ولينك الدخول.",
+    lecTitle:"محاضرتي القادمة", lecSub:"اكتب رقمك المسجّل عندنا وهنعرض لك الميعاد والدكتور ولينك المحاضرة.",
+    lecBtn:"اعرض محاضرتي",
+    lecToday:"النهارده", lecMoved:"ميعاد جديد",
+    lecModule:"المادة", lecDoctor:"الدكتور", lecNo:"المحاضرة",
+    join:"ادخل المحاضرة على Zoom",
+    noZoom:"لينك المحاضرة لسه ما اتضافش — هيتبعتلك على جروب الواتساب قبل المحاضرة.",
+    nextUp:"المحاضرات اللي بعدها",
+    noLectures:"مفيش محاضرات جاية متسجلة لجروبك دلوقتي.",
+    nfTitle:"الرقم ده مش مطابق للرقم المسجّل عندنا",
+    nfText:"اتأكد إنك كتبت نفس الرقم اللي سجّلت بيه، أو اختار برنامجك وكلّم فريق المتابعة على واتساب وهيردوا عليك.",
+    pickProg:"اختار برنامجك:", waFollow:"تواصل مع فريق المتابعة على واتساب",
+    nfNoWa:"تواصل مع فريق خدمة العملاء لتحديث رقمك.",
+    waBtn:"كلّم فريق المتابعة على واتساب",
+    waAsk:"محتاج مساعدة؟ كلّمنا على واتساب",
+    waMsg:(p,prog)=>`السلام عليكم، أنا طالب في CEO Group${prog ? " (" + prog + ")" : ""} ورقمي ${p} مش ظاهر في صفحة المحاضرات. ممكن تساعدوني؟`,
+    waMsgFound:(p,n,g)=>`السلام عليكم، أنا ${n} من ${g} ورقمي ${p}. محتاج مساعدة بخصوص المحاضرات.`,
+    lecErr:"تعذّر عرض محاضرتك."
   },
   en:{
     title:"CEO Group | Attendance",
@@ -646,7 +768,27 @@ const T = {
     again:"Check in another attendance",
     netErr:"Connection problem. Please try again in a moment.",
     srvErr:"Couldn't save attendance: ",
-    footer:"Attendance platform"
+    footer:"Attendance platform",
+    tabAttend:"Check in", tabLecture:"My next lecture",
+    h1aL:"Find your", h1bL:"next lecture",
+    leadL:"Type your registered phone number — we'll show the date of your next lecture, the doctor and the link to join.",
+    lecTitle:"My next lecture", lecSub:"Enter the number registered with us to see the time, the doctor and the lecture link.",
+    lecBtn:"Show my lecture",
+    lecToday:"Today", lecMoved:"New date",
+    lecModule:"Module", lecDoctor:"Doctor", lecNo:"Lecture",
+    join:"Join the lecture on Zoom",
+    noZoom:"The lecture link hasn't been added yet — it will be shared in your WhatsApp group before the lecture.",
+    nextUp:"Following lectures",
+    noLectures:"There are no upcoming lectures scheduled for your group right now.",
+    nfTitle:"This number doesn't match our records",
+    nfText:"Check that you typed the number you registered with, or choose your programme and message the follow-up team on WhatsApp.",
+    pickProg:"Choose your programme:", waFollow:"Message your follow-up team on WhatsApp",
+    nfNoWa:"Please contact customer service to update your number.",
+    waBtn:"Message the follow-up team on WhatsApp",
+    waAsk:"Need help? Message us on WhatsApp",
+    waMsg:(p,prog)=>`Hello, I'm a CEO Group student${prog ? " (" + prog + ")" : ""}. My number ${p} isn't showing on the lectures page. Could you help me?`,
+    waMsgFound:(p,n,g)=>`Hello, I'm ${n} from ${g}, my number is ${p}. I need help with my lectures.`,
+    lecErr:"We couldn't load your lecture."
   }
 };
 
@@ -703,7 +845,9 @@ function applyLang(l, animate){
   tg.dataset.lang = l;
   tg.querySelectorAll("span").forEach(s => s.classList.toggle("active", s.dataset.l === l));
   $("#sname").placeholder = t.namePh;
+  $("#lphone").placeholder = t.phonePh;
   renderWho();
+  if (typeof heroTexts === "function" && document.querySelector(".steps")) { heroTexts(); renderLecture(); }
   ["fPhone","fName"].forEach(id => { if ($("#"+id).classList.contains("invalid")) validateField(id); });
   tickClock();
   store("ceo_lang", l);
@@ -1017,7 +1161,127 @@ function tickClock(){
 }
 
 /* =========================================================
-   10) Init
+   10) My next lecture
+   ========================================================= */
+let tab = "attend", lecBusy = false;
+const WA_SVG = '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2A9.8 9.8 0 0 0 3.6 17l-1.3 4.8 4.9-1.3A9.8 9.8 0 1 0 12 2.2zm0 17.8a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.5-.3z"/></svg>';
+const ZOOM_SVG = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="3"/><path d="M16 10.5l5-3v9l-5-3"/></svg>';
+
+function setTab(t, focus){
+  tab = t;
+  const card = $("#card");
+  card.dataset.tab = t;
+  $("#tabAttend").setAttribute("aria-selected", t === "attend");
+  $("#tabLecture").setAttribute("aria-selected", t === "lecture");
+  ["paneAttend","paneLecture"].forEach(id => {
+    const show = (id === "paneAttend") === (t === "attend");
+    const el = $("#"+id); el.hidden = !show;
+    if (show){ el.classList.remove("enter"); void el.offsetWidth; el.classList.add("enter"); }
+  });
+  heroTexts();
+  try{ history.replaceState(null, "", t === "lecture" ? "#lecture" : location.pathname + location.search); }catch(e){}
+  if (t === "lecture"){
+    const lp = $("#lphone");
+    if (!lp.value && $("#phone").value) lp.value = $("#phone").value;
+    if (focus) setTimeout(() => lp.focus({preventScroll:true}), 200);
+  }
+}
+function heroTexts(){
+  const t = T[lang], L = tab === "lecture";
+  document.querySelector('[data-i18n="h1a"]').textContent = L ? t.h1aL : t.h1a;
+  document.querySelector('[data-i18n="h1b"]').textContent = L ? t.h1bL : t.h1b;
+  document.querySelector('[data-i18n="lead"]').textContent = L ? t.leadL : t.lead;
+  document.querySelector(".steps").style.display = L ? "none" : "";
+}
+function waLink(num, text){
+  return "https://wa.me/" + String(num).replace(/\D/g, "") + "?text=" + encodeURIComponent(text);
+}
+function demoLecture(phone){
+  if (+phone.slice(-1) % 2) return { ok:true, found:false, contacts:[{label:"EIU MBA", whatsapp:"201044015001"},{label:"AITU MBA", whatsapp:"201070988446"},{label:"Qualifi", whatsapp:"201158882585"}] };
+  const d = n => { const x = new Date(Date.now() + n*864e5); return x.toISOString().slice(0,10); };
+  return { ok:true, found:true, name:"Ahmed M.", enrollments:[{ accreditation:"EIU MBA", group:"EIU MBA · Group 2", whatsapp:"201044015001",
+    lectures:[{date:d(0), time:"6:00 – 8:00 PM (Cairo)", module:"MGT520 - Strategic Management", n:3, doctor:"Dr. Hesham Safwat", zoom:"https://zoom.us", today:true},
+              {date:d(3), time:"6:00 – 8:00 PM (Cairo)", module:"MGT520 - Strategic Management", n:4, doctor:"Dr. Hesham Safwat", zoom:"https://zoom.us"},
+              {date:d(7), time:"6:00 – 8:00 PM (Cairo)", module:"MGT520 - Strategic Management", n:5, doctor:"Dr. Hesham Safwat", zoom:"https://zoom.us", rescheduled:true}]}]};
+}
+let lecLast = null;
+async function lectureLookup(e){
+  if (e) e.preventDefault();
+  if (lecBusy) return;
+  const f = $("#fLPhone"), p = normalizePhone($("#lphone").value), t = T[lang];
+  if (!isValidPhone(p)){ f.classList.add("invalid"); f.classList.remove("valid"); f.querySelector(".hint").textContent = t.phoneErr; return; }
+  f.classList.remove("invalid"); f.classList.add("valid"); f.querySelector(".hint").textContent = t.phoneHint;
+  lecBusy = true; const btn = $("#lecBtn"); btn.classList.add("loading");
+  $("#lecOut").innerHTML = `<div class="lec-state" style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;background:var(--field);color:var(--ink-soft);font-size:14.5px"><span class="dots"><i></i><i></i><i></i></span>${esc(t.searching)}</div>`;
+  let d;
+  try{
+    if (!CONFIG.SCRIPT_URL){ await new Promise(r => setTimeout(r, 700)); d = demoLecture(p); }
+    else{
+      const ctl = new AbortController(); const to = setTimeout(() => ctl.abort(), 15000);
+      const res = await fetch(CONFIG.SCRIPT_URL + "?action=lecture&phone=" + encodeURIComponent(p) + "&t=" + Date.now(), {signal:ctl.signal});
+      clearTimeout(to); d = await res.json();
+    }
+  }catch(err){ d = null; }
+  lecBusy = false; btn.classList.remove("loading");
+  lecLast = d ? Object.assign({phone:p}, d) : {error:true, phone:p};
+  renderLecture();
+}
+function fmtLecDate(iso, opts){
+  const [y,m,d] = iso.split("-").map(Number);
+  return new Intl.DateTimeFormat(lang==="ar"?"ar-EG":"en-GB", Object.assign({timeZone:"UTC"}, opts)).format(new Date(Date.UTC(y, m-1, d)));
+}
+function renderLecture(){
+  const out = $("#lecOut"), t = T[lang], d = lecLast;
+  if (!d){ out.innerHTML = ""; return; }
+  if (d.error || !d.ok){
+    out.innerHTML = `<div class="lec-state notice err"><span>${esc(t.lecErr)}</span> <button type="button" class="link" id="lecRetry">${esc(t.retry)}</button></div>`;
+    $("#lecRetry").onclick = () => lectureLookup();
+    return;
+  }
+  if (!d.found){
+    const C = (d.contacts || []).filter(c => c.whatsapp);
+    if (!C.length && d.whatsapp) C.push({label:"", whatsapp:d.whatsapp});
+    out.innerHTML = `<div class="lec-state"><div class="notice">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 7.5v5.5"/><path d="M12 16.5h.01"/></svg>
+        <div><b>${esc(t.nfTitle)}</b>${esc(C.length ? t.nfText : t.nfNoWa)}</div></div>
+      ${C.length > 1 ? `<div class="pick-label">${esc(t.pickProg)}</div><div class="picks" role="radiogroup">${C.map((c,i) => `<button type="button" class="pick" role="radio" aria-checked="false" data-i="${i}">${esc(c.label)}</button>`).join("")}</div>` : ""}
+      ${C.length ? `<a class="wa" id="waNf" target="_blank" rel="noopener" ${C.length > 1 ? 'aria-disabled="true"' : `href="${esc(waLink(C[0].whatsapp, t.waMsg(d.phone, C[0].label)))}"`}>${WA_SVG}<span>${esc(t.waBtn)}</span></a>` : ""}</div>`;
+    out.querySelectorAll(".pick").forEach(b => b.addEventListener("click", () => {
+      out.querySelectorAll(".pick").forEach(x => x.setAttribute("aria-checked", x === b));
+      const a = $("#waNf"); a.href = waLink(C[+b.dataset.i].whatsapp, t.waMsg(d.phone, C[+b.dataset.i].label)); a.removeAttribute("aria-disabled");
+      d.pickIdx = +b.dataset.i;
+    }));
+    if (d.pickIdx != null){ const b = out.querySelector(`.pick[data-i="${d.pickIdx}"]`); if (b) b.click(); }
+    return;
+  }
+  const cards = d.enrollments.map(e => {
+    const L = e.lectures || [];
+    const head = `<div class="lec-top"><span class="acc">${esc(e.accreditation)}</span><span class="grp">${esc(e.group)}</span>`;
+    if (!L.length) return `<div class="lec-card">${head}</div><div class="no-link">${esc(t.noLectures)}</div>${e.whatsapp ? `<a class="wa small" href="${esc(waLink(e.whatsapp, t.waMsgFound(d.phone, d.name || "", e.group)))}" target="_blank" rel="noopener">${WA_SVG}<span>${esc(t.waFollow)}</span></a>` : ""}</div>`;
+    const x = L[0];
+    const badge = x.today ? `<span class="badge-today">${esc(t.lecToday)}</span>` : (x.rescheduled ? `<span class="badge-moved">${esc(t.lecMoved)}</span>` : "");
+    const rest = L.slice(1).map(y => `<div><span>${esc(fmtLecDate(y.date,{weekday:"long", day:"numeric", month:"short"}))}${y.rescheduled ? " · " + esc(t.lecMoved) : ""}</span><b class="ltr">${esc(y.time)}</b></div>`).join("");
+    return `<div class="lec-card${x.today ? " today" : ""}">${head}${badge}</div>
+      <div class="lec-when">
+        <div class="cal"><b>${esc(fmtLecDate(x.date,{month:"short"}))}</b><span>${esc(fmtLecDate(x.date,{day:"numeric"}))}</span></div>
+        <div><div class="lec-day">${esc(x.today ? t.lecToday + " · " + fmtLecDate(x.date,{weekday:"long"}) : fmtLecDate(x.date,{weekday:"long", day:"numeric", month:"long"}))}</div>
+          ${x.time ? `<div class="lec-time">${esc(x.time)}</div>` : ""}</div>
+      </div>
+      <div class="lec-rows">
+        <div><span>${esc(t.lecModule)}</span><b>${esc(x.module)}${x.n ? " · " + esc(t.lecNo) + " " + esc(x.n) : ""}</b></div>
+        ${x.doctor ? `<div><span>${esc(t.lecDoctor)}</span><b>${esc(x.doctor)}</b></div>` : ""}
+      </div>
+      ${x.zoom ? `<a class="join" href="${esc(x.zoom)}" target="_blank" rel="noopener">${ZOOM_SVG}<span>${esc(t.join)}</span></a>` : `<div class="no-link">${esc(t.noZoom)}</div>`}
+      ${rest ? `<div class="next-list"><div style="padding-bottom:6px"><b>${esc(t.nextUp)}</b></div>${rest}</div>` : ""}
+      ${e.whatsapp ? `<a class="wa small" href="${esc(waLink(e.whatsapp, t.waMsgFound(d.phone, d.name || "", e.group)))}" target="_blank" rel="noopener">${WA_SVG}<span>${esc(t.waFollow)}</span></a>` : ""}
+    </div>`;
+  }).join("");
+  out.innerHTML = `<div class="lec-state"><div class="hello"><div class="avatar">${esc((d.name||"?").charAt(0))}</div>
+      <div class="hello-t">${t.hello(esc(d.name||""))}</div></div>${cards}</div>`;
+}
+
+/* =========================================================
+   11) Init
    ========================================================= */
 document.addEventListener("DOMContentLoaded", () => {
   $("#year").textContent = new Date().getFullYear();
@@ -1054,6 +1318,16 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#attForm").addEventListener("submit", onSubmit);
   $("#submitBtn").addEventListener("pointerdown", ripple);
   $("#againBtn").addEventListener("click", resetForm);
+
+  $("#tabAttend").addEventListener("click", () => setTab("attend", true));
+  $("#tabLecture").addEventListener("click", () => setTab("lecture", true));
+  $("#lecForm").addEventListener("submit", lectureLookup);
+  $("#lecBtn").addEventListener("pointerdown", ripple);
+  $("#lphone").addEventListener("input", e => {
+    const n = toLatinDigits(e.target.value); if (n !== e.target.value) e.target.value = n;
+    $("#fLPhone").classList.remove("invalid");
+  });
+  if (location.hash === "#lecture") setTab("lecture", false);
 });
 </script>
 </body>
